@@ -26,7 +26,7 @@ app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 app.json_encoder = CustomEncoder
 
-# nltk.download('stopwords')
+nltk.download('stopwords')
 stopwords = stopwords.words('english')
 
 
