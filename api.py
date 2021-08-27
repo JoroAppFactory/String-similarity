@@ -59,7 +59,10 @@ def get_similarity_percentage(str1, str2):
     return percentage
 
 
-@app.route('/', methods=['GET'])
+@app.route('/test', methods=['GET'])
+def test():
+    return "<h1>FOR TEST PURPOSE</h1><p>Ignore this...</p>"
+
 @app.route('/similarity', methods=['POST'])
 def similarity():
     data = request.get_json()
@@ -76,8 +79,6 @@ def similarity():
     return jsonify({"input": input, "strings": results})
 
 
-def home():
-    return "<h1>FOR TEST PURPOSE</h1><p>Ignore this...</p>"
 
 
 app.run()
