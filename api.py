@@ -100,9 +100,8 @@ def autocorrect():
         cutoff = cutoff_input
 
     forbidden_words_default.extend(forbidden_words)
-    print(forbidden_words_default)
     for w in forbidden_words_default:
-        input.replace(w, '')
+       input = input.replace(w, '')
 
     # logic
     splitted_input = input.split(" ")
