@@ -122,7 +122,8 @@ def autocorrect():
     # forbidden distilleries filtering
     forbidden_distilleries_defaults.extend(forbidden_distilleries)
     for word in forbidden_distilleries_defaults:
-        output.remove(word)
+        if word in output:
+            output.remove(word)
         
     return jsonify(output)
 
