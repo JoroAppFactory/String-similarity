@@ -81,6 +81,15 @@ def similarity():
     return jsonify({"input": input, "strings": results})
 
 
+@app.route('/test123', methods=['POST'])
+def test123():
+    data = request.get_json()
+    input = data.get('input', '')
+
+    result = str(input).split(',')
+    return jsonify(result)
+
+
 @app.route('/autocorrect', methods=['POST'])
 def autocorrect():
     # settings
@@ -128,7 +137,7 @@ def autocorrect():
         "lagavulin",
         "fettercairn",
         "talisker",
-        "1779",
+        "bow mor",
         "beam suntory",
         "nikka",
         "benromach",
@@ -169,7 +178,7 @@ def autocorrect():
         "daftmill",
         "dalwhinnie",
         "balvenie",
-        "cola",
+        "caol ila",
         "littlemill",
         "inchgower",
         "caledonian",
@@ -387,7 +396,7 @@ def autocorrect():
         "glencraig",
         "octomore",
         "black bull",
-        "ben bracken",
+        "ben bracken"
     ]
 
     # Request
