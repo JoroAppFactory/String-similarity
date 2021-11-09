@@ -47,10 +47,11 @@ def find(input, strings):
     results = []
     for x in strings:
 
-        results.append({"value": x, "percentage": get_similarity_percentage(input, x)})
+        results.append(
+            {"value": x, "percentage": get_similarity_percentage(input, x)})
 
         # results.append(
         #     Result(x, get_similarity_percentage(input, x)))
 
-    results.sort(key=lambda x: x.percentage, reverse=True)
+    results.sort(key=lambda x: x['percentage'], reverse=True)
     return {'input': input, 'strings': results}

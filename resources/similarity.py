@@ -7,8 +7,7 @@ from resources.services.similarity_service import find
 
 
 class Similarity(Resource):
-    
-    
+
     @classmethod
     def post(cls):
         data = request.get_json()
@@ -18,5 +17,5 @@ class Similarity(Resource):
         try:
             obj = find(input, strings)
             return obj, 200
-        except:
-            return {'status': 'failed', 'message': 'The similarity failed.'}, 202
+        except Exception as e:
+            return {'status': 'failed', 'message': e}, 202
