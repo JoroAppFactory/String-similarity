@@ -20,7 +20,7 @@ class ClosestMatch(Resource):
         detections = read_file('detections.json')
 
         closest_google = get_closest_cosine(
-            text, detections, 0.50, 'google-1')
+            text, detections, 0.0, 'google-1')
 
         best_whisky_ids = []
         for whisky_id in whisky_ids:
@@ -32,7 +32,7 @@ class ClosestMatch(Resource):
                 "confidence": 0.0
             }
 
-            if found_obj:
+            if found_obj and found_obj['confidence'] >= 0.50:
                 obj['confidence'] = found_obj['confidence']
 
             best_whisky_ids.append(obj)
