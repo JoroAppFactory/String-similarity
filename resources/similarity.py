@@ -7,6 +7,8 @@ from resources.services.similarity_service import find
 
 
 class Similarity(Resource):
+    
+    
     @classmethod
     def post(cls):
         data = request.get_json()
