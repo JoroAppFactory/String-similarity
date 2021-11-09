@@ -13,10 +13,6 @@ from resources.services.detection_service import get_closest_cosine
 class ClosestMatch(Resource):
     @classmethod
     def post(cls):
-        # Joro gives a text to me and whisky ids
-        # I Search for the closest one in our "db"
-        # Return the ID or multiple IDS for whiskys
-
         data = request.get_json()
         text = data.get('text', '')
         whisky_ids = data.get('whisky_ids', '')
@@ -26,12 +22,28 @@ class ClosestMatch(Resource):
         closest_google = get_closest_cosine(
             text, detections, 0.50, 'google-1')
 
-        obj = {
+        best_whisky_ids = []
+        for whisky_id in whisky_ids:
+            found_obj = next(
+                (x for x in closest_google if x['whisky_id'] == whisky_id), None)
+
+            obj = {
+                "whisky_id": whisky_id,
+                "confidence": 0.0
+            }
+
+            if found_obj:
+                obj['confidence'] = found_obj['confidence']
+
+            best_whisky_ids.append(obj)
+
+        best_whisky_ids.sort(key=lambda x: x['confidence'], reverse=True)
+        result = {
             "given_whisky_ids": whisky_ids,
-            "best_whisky_ids": closest_google[0:5]
+            "best_whisky_ids": best_whisky_ids
         }
 
-        return {'status': 'ok', 'result': obj}, 200
+        return {'status': 'ok', 'result': result}, 200
 
 
 class ClosestMatchFromFile(Resource):
