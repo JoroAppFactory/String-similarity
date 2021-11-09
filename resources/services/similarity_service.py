@@ -37,17 +37,20 @@ def get_similarity_percentage(str1, str2):
     return percentage
 
 
-class Result:
-    def __init__(self, value, percentage):
-        self.value = value
-        self.percentage = percentage
+# class Result:
+#     def __init__(self, value, percentage):
+#         self.value = value
+#         self.percentage = percentage
 
 
 def find(input, strings):
     results = []
     for x in strings:
-        results.append(
-            Result(x, get_similarity_percentage(input, x)))
+
+        results.append({"value": x, "percentage": get_similarity_percentage(input, x)})
+
+        # results.append(
+        #     Result(x, get_similarity_percentage(input, x)))
 
     results.sort(key=lambda x: x.percentage, reverse=True)
     return {'input': input, 'strings': results}

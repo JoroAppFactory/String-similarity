@@ -7,17 +7,17 @@ from flask_restx import Api
 from resources.closest_match import ClosestMatchFromFile, ClosestMatch
 from resources.auto_correct import Autocorrect
 from resources.similarity import Similarity
-from resources.services.similarity_service import Result
+# from resources.services.similarity_service import Result
 
 app = Flask(__name__)
 
-class CustomEncoder(json.JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, Result):
-            return {"value": obj.value, "percentage": obj.percentage}
-        return json.JSONEncoder.default(self, obj)
+# class CustomEncoder(json.JSONEncoder):
+#     def default(self, obj):
+#         if isinstance(obj, Result):
+#             return {"value": obj.value, "percentage": obj.percentage}
+#         return json.JSONEncoder.default(self, obj)
 
-app.json_encoder = CustomEncoder
+# app.json_encoder = CustomEncoder
 
 api = Api(app, version='1.0', title='Bevvy OCR API',
           description='Bevvy OCR API docs')
